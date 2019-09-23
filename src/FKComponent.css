@@ -1,0 +1,52 @@
+
+.flipkartDropdown{
+width: auto;
+background: #EFEFEF;
+border: 2px solid #EFEFEF;
+border-radius: 10px;
+height: 60px;
+align-content: center;
+margin: 10px 20px;
+padding: 15px;
+
+
+
+}
+
+.image{
+    width: 100px;
+    height:30px;
+    float:left;
+    margin-right: 10px;
+}
+
+.clickbar{
+    width: 600px;
+    height: 40px;
+    border: 1px solid black;
+    float: left;
+    align-content: center;
+    padding: 10px;
+
+}
+
+
+.inputBox{
+    border: 1px solid black;
+    width: 350px;
+    height: 40px;
+    float:left;
+    margin-left: 50px;
+    padding: 10px;
+}
+
+.inputPid{
+    width: 250px;
+  height:35px;
+  border: 1px solid;
+  border-radius: 5px;
+  border-color: red;
+  
+  text-align: center;
+  float:left;
+}
