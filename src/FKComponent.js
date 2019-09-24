@@ -3,6 +3,13 @@ import './FKComponent.css'
 import logo from './Flipkart_logo.png'
 import addbutton from './addbutton.png'
 
+const testData = [
+{name: 'phone',price: '2000',inStock: true},
+{name: 'maggi',price: '200',inStock: true},
+{name: 'laptop', price: '20000', inStock: false}
+
+];
+
 
 class FlipKart extends React.Component{
 
@@ -56,17 +63,43 @@ const addbuttonStyle={
     
 
 }
-const Item = () =>{
 
-};
+class Item extends React.Component {
+render(){
+    const item= this.props;
+    return(
+    <div className='itemCard'>
+        <span>NAME : {item.name}</span>
+        <span>PRICE :{item.price}</span>
+        <span>InStock :{item.inStock}</span>
+    </div>
+    );
+
+}
+}
+const ItemList = () =>(
+    <div>
+  	{testData.map(item => <Item {...item}/>)}
+	</div>
+);
 
 class VendorContainer extends React.Component{
     state={
-        items:[],
+        items:testData,
     };
+
+    addNewItem = (itemData) => {
+        this.setState(prevState => ({
+            items: [...prevState.items, itemData],
+      }));
+    };
+
     render(){
         return(
-            <FlipKart items={this.state.items}/>
+            <div >
+            <FlipKart onAdd={this.addNewItem}/>
+            <ItemList />
+            </div>
         );
     }
 }
