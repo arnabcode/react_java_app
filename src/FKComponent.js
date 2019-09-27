@@ -2,13 +2,8 @@ import React ,{Component} from 'react';
 import './FKComponent.css'
 import logo from './Flipkart_logo.png'
 import addbutton from './addbutton.png'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-const testData = [
-{name: 'phone',price: '2000',inStock: true},
-{name: 'maggi',price: '200',inStock: true},
-{name: 'laptop', price: '20000', inStock: false}
-
-];
 
 
 class FlipKart extends React.Component{
@@ -18,14 +13,17 @@ class FlipKart extends React.Component{
         pid:"",
 
     }
-    handleClick=()=>{
+    handleClick=(event)=>{
+        event.preventDefault();
         this.setState({clicked:true});
+        console.log(this.state.pid);
+        this.props.onAdd(this.state.pid);
+        this.setState({pid : ''});
 
-
-    }
+    };
     showitems=()=>{
         console.log("hello");
-    }
+    };
 
     render(){
         return(
@@ -38,14 +36,16 @@ class FlipKart extends React.Component{
             </div>
             </div>
             <div className="inputBox">
+            <form onSubmit={this.handleClick}>
             <input 
                 className="inputPid"
                 type ="text"
-                value={this.state.id}
+                value={this.state.pid}
                 onChange ={(event)=>this.setState({pid :event.target.value})}
                 placeholder="Enter product id to track"
                 required
             />
+            </form>
             <div onClick={this.handleClick} >
             <img src={addbutton} style={addbuttonStyle} />
             </div>
@@ -66,26 +66,41 @@ const addbuttonStyle={
 
 class Item extends React.Component {
 render(){
-    const item= this.props;
+    const item= this.props.item;
     return(
-    <div className='itemCard'>
-        <span>NAME : {item.name}</span>
-        <span>PRICE :{item.price}</span>
-        <span>InStock :{item.inStock}</span>
+    <div className='itemCard' >
+        <div>NAME : {item}</div>
+       
     </div>
     );
 
 }
 }
-const ItemList = () =>(
-    <div>
-  	{testData.map(item => <Item {...item}/>)}
-	</div>
-);
+const ItemList = (props) =>{
+
+    const items = props.items.map((item, i) => (
+        <div key={item} onClick={() => this.handleRemove(i)}>
+          <Item key ={i} item={item}/>
+        </div>
+      ));
+  
+
+    return(
+    <ReactCSSTransitionGroup
+          transitionName="example"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+
+    {items}
+        </ReactCSSTransitionGroup>
+    );
+    
+    
+}
 
 class VendorContainer extends React.Component{
     state={
-        items:testData,
+        items:[],
     };
 
     addNewItem = (itemData) => {
@@ -96,9 +111,13 @@ class VendorContainer extends React.Component{
 
     render(){
         return(
-            <div >
+            <div className='Vendorbox'>
+                <div>
             <FlipKart onAdd={this.addNewItem}/>
-            <ItemList />
+            </div>
+            <div>
+            <ItemList items={this.state.items}/>
+            </div>
             </div>
         );
     }
