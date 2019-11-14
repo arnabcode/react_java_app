@@ -65,12 +65,16 @@ const addbuttonStyle={
 }
 
 class Item extends React.Component {
+
+    removeitem =() =>{
+        this.props.remove(this.props.idKey)
+    };
 render(){
     const item= this.props.item;
     return(
     <div className='itemCard' >
         <div>NAME : {item}</div>
-       
+       <button onClick={this.removeitem}  style={{ float: 'right'}}>Delete</button>
     </div>
     );
 
@@ -79,8 +83,8 @@ render(){
 const ItemList = (props) =>{
 
     const items = props.items.map((item, i) => (
-        <div key={item} onClick={() => this.handleRemove(i)}>
-          <Item key ={i} item={item}/>
+        <div key={item} >
+          <Item idKey ={i} item={item} remove={props.handleRemove}/>
         </div>
       ));
   
@@ -103,10 +107,21 @@ class VendorContainer extends React.Component{
         items:[],
     };
 
+    removeItem =(index) =>{
+        const temp = this.state.items;
+        console.log("Deleteing at index : ", index);
+        temp.splice(index,1)
+        this.setState(({
+            items: temp
+        }));
+
+        console.log(this.state.items);
+    };
     addNewItem = (itemData) => {
         this.setState(prevState => ({
             items: [...prevState.items, itemData],
       }));
+      console.log(this.state.items);
     };
 
     render(){
@@ -116,7 +131,7 @@ class VendorContainer extends React.Component{
             <FlipKart onAdd={this.addNewItem}/>
             </div>
             <div>
-            <ItemList items={this.state.items}/>
+            <ItemList items={this.state.items} handleRemove={this.removeItem}/>
             </div>
             </div>
         );
