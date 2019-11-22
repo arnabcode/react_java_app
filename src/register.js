@@ -47,7 +47,7 @@ const sendRequest = async (payload) => {
   console.log(response)
 } 
 
-const InputFields = () => {
+const RegisterFields = () => {
   const classes = useStyles();
 const [firstName, setFirstName] = useState("");
 const [lastName, setLastName]= useState("");
@@ -153,4 +153,4 @@ const [password, setPassword] = useState("");
 
 
 
-export default InputFields;
+export default RegisterFields;
