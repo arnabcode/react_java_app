@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Axios from 'axios';
+import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -10,7 +11,6 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
     border: 2 +'px',
     borderStyle: 'solid',
-    float: 'right',
     marginRight: theme.spacing(10),
     marginTop: theme.spacing(10),
     paddingBottom: 20 + 'px',
@@ -18,19 +18,20 @@ const useStyles = makeStyles(theme => ({
 
   },
   textField: {
+    display: 'flex',
+    flexWrap: 'wrap',
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
-    width: 400 +'px',
+    //width: 400 +'px',
     
   },
   nameField: {
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-    width: 190 +'px',
+    display: 'flex',
+    flexWrap: 'wrap',
+   
+   // width: 185 +'px',
     
   },
   button: {
@@ -49,12 +50,15 @@ const sendRequest = async (payload) => {
 
 const RegisterFields = () => {
   const classes = useStyles();
-const [firstName, setFirstName] = useState("");
-const [lastName, setLastName]= useState("");
-const [phone, setPhone] = useState("");
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
-
+  const [value, setValue] = useState({
+    
+    firstName:'',
+    lastName: '',
+    phone: '',
+    email: '',
+    password: ''
+  })
+  const { firstName,lastName,phone,email, password } = value;
   const  handleClick = (event) => {
     event.preventDefault();
   
@@ -70,31 +74,50 @@ const [password, setPassword] = useState("");
 
     //keep validation function
   }
+  function handleChange(e) {
+      setValue({
+        ...value,
+        [e.target.name]: e.target.value
+      });
+    }
+
   
 
   return (
-    <form className={classes.container} noValidate autoComplete="off">
-      <div>
+    <Grid container direction="column" justify="center"
+    alignItems="center" spacing={2}>
+    <form  noValidate autoComplete="off">
+      <Grid item >
+      <Grid container direction='row' spacing={1} justify = 'center'>
+      <Grid item xs ={5}>
         <TextField
           id="outlined-basic"
           className={classes.nameField}
           value={firstName}
-          onChange ={(event)=>setFirstName(event.target.value)}
+          onChange ={handleChange}
           label="First Name"
+          name='firstName'
           margin="normal"
           variant="outlined"
+          required
         />
+        </Grid>
+        <Grid item xs ={5}>
         <TextField
           id="outlined-basic"
           className={classes.nameField}
           value={lastName}
-          onChange ={(event)=>setLastName(event.target.value)}
+          onChange ={handleChange}
+          name='lastName'
           label="Last Name"
           margin="normal"
           variant="outlined"
+          required
         />
-        
-        <br />
+        </Grid>
+        </Grid>
+        </Grid>
+        <Grid item xs = {12}>
         <TextField
           id="outlined-basic"
           className={classes.textField}
@@ -102,21 +125,26 @@ const [password, setPassword] = useState("");
           margin="normal"
           variant="outlined"
           value={email}
-          onChange ={(event)=>setEmail(event.target.value)}
+          name='email'
+          onChange ={handleChange}
+          required
         />
-        <br />
+        </Grid>
+        <Grid item xs = {12} >
         <TextField
           id="outlined"
           className={classes.textField}
           label="Password"
           margin="normal"
           variant="outlined"
+          name='password'
           type="password"
           value={password}
-          onChange ={(event)=>setPassword(event.target.value)}
+          onChange ={handleChange}
+          required
         />
-
-        <br />
+        </Grid>
+        <Grid item xs = {12}>
         <TextField
           id="outlined"
           className={classes.textField}
@@ -124,9 +152,11 @@ const [password, setPassword] = useState("");
           margin="normal"
           variant="outlined"
           type="password"
-          //onChange ={}
+          onChange ={handleChange}
+          required
         />
-        <br />
+        </Grid>
+        <Grid item xs = {12}>
         <TextField
           id="outlined"
           className={classes.textField}
@@ -134,10 +164,13 @@ const [password, setPassword] = useState("");
           margin="normal"
           variant="outlined"
           value={phone}
-          onChange ={(event)=>setPhone(event.target.value)}
+          name='phone'
+          onChange ={handleChange}
+          required
         />
-        <br />
+        </Grid>
         
+        <Grid item xs ={6}>
         <Button 
         variant="contained" 
         color="primary" 
@@ -145,8 +178,9 @@ const [password, setPassword] = useState("");
         onClick={ (event) => handleClick (event) }>
           Submit
         </Button>
-      </div>
+      </Grid>
     </form>
+    </Grid>
   );
 }
 
