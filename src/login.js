@@ -14,8 +14,6 @@ const useStyles = makeStyles(theme => ({
     '& > * + *': {
       marginLeft: theme.spacing(2),
     },
-    margin: theme.spacing(3),
-   // paddingLeft: theme.spacing(7),
     float:"left"
   },
     container: {
@@ -23,8 +21,7 @@ const useStyles = makeStyles(theme => ({
       flexWrap: 'wrap',
       flexGrow: 1,
       padding: theme.spacing(2),
-      marginTop: theme.spacing(5),
-      marginRight: theme.spacing(5)
+      marginTop: theme.spacing(5)
   
   
     },

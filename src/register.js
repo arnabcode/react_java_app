@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
     border: 2 +'px',
     borderStyle: 'solid',
-    marginRight: theme.spacing(10),
+    
     marginTop: theme.spacing(10),
     paddingBottom: 20 + 'px',
 
@@ -35,8 +35,7 @@ const useStyles = makeStyles(theme => ({
     
   },
   button: {
-    margin: theme.spacing(1),
-    margin: 'auto',
+   
     marginLeft: theme.spacing(20),
     marginRight: theme.spacing(2),
   },
