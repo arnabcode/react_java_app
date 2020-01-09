@@ -1,19 +1,13 @@
 import React,{useState} from 'react';
 import { makeStyles,useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper'
-import HomeIcon from '@material-ui/icons/Home';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import Toolbar from '@material-ui/core/Toolbar';
-import AppBar from '@material-ui/core/AppBar';
-import LoginSignup from './firstComponent'
 import Carousel from 'react-material-ui-carousel'
-import Link from '@material-ui/core/Link'
 import image1 from './image1.jpg'
 import image2 from './image2.jpg'
 import image3 from './image3.jpg'
+import LoginSignup from './firstComponent'
 
 
 const useStyles = makeStyles(theme => ({
@@ -31,7 +25,7 @@ const useStyles = makeStyles(theme => ({
         height: 2500 + 'px'
     },
     menuButton: {
-        marginRight: theme.spacing(2),
+        marginTop: theme.spacing(0),
         
       },
       title: {
@@ -39,10 +33,13 @@ const useStyles = makeStyles(theme => ({
       },
       navpills:{
           padding : theme.spacing(1),
-          margin: theme.spacing(3)
+          margin: theme.spacing(3),
+          width: theme.spacing(25),
+          textAlign: 'center'
       },
       toolbar:{
-          alignContent: 'center'
+          alignContent: 'center',
+          marginTop: theme.spacing(1)
       }
 
   }));  
@@ -89,48 +86,16 @@ const CarousalComponent = () => {
       const theme = useTheme();
       const classes = useStyles();
       return(
-          <Grid container direction ='row' justify = 'space-around' spacing = {5}>
+        <Grid container direction ='row' justify = 'space-around' spacing = {2}>
           
-          <AppBar position="relative" color="inherit">
-          <br />
-        <Toolbar className={classes.toolbar}>
-        
-        <Grid container direction ='row' justify = 'space-around' spacing = {5}>
-          <Paper elevation={4} className={classes.navpills}>
-          <Link href="#"  color="black" underline="hover" variant="body1" >
-            About Developer
-          </Link>
-          </Paper>
-          <Paper elevation={4} className={classes.navpills}> 
-          <Link href="#"  color="black" underline="hover" variant="body1" >
-          Services
-          </Link>
-          </Paper>
-          <IconButton edge="false" className={classes.menuButton} color="inherit" aria-label="menu">
-            <HomeIcon style={{ fontSize:70 + 'px', border: 1+ 'px',
-        borderColor: 'black' }}/>
-          </IconButton>
-          <Paper elevation={4} className={classes.navpills}> 
-          <Link href="#"  color="black" underline="hover" variant="body1" >
-          Contact Page
-          </Link>
-          </Paper>
-          <Paper elevation={4} className={classes.navpills}>
-          <Link href="#"  color="black" underline="hover" variant="body1" >
-          New Projects
-          </Link>
-          </Paper>
-         
-         </Grid>
-        </Toolbar>
-      </AppBar>
-          <Grid item xs = {7} style={{ paddingTop: theme.spacing(10) , paddingLeft: theme.spacing(10)}}>
+          
+          <Grid item xs={7} style={{ paddingTop: theme.spacing(5) , paddingLeft: theme.spacing(2)}}>
           
           <CarousalComponent />
           
           </Grid>
 
-          <Grid item xs={5} style={{ paddingTop: theme.spacing(6) }}>
+          <Grid item xs={4} style={{ paddingTop: theme.spacing(3) }}>
           <LoginSignup />
               </Grid>
           </Grid>

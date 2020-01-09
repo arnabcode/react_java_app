@@ -14,7 +14,7 @@ import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles(theme => ({
     root: {
       backgroundColor: theme.palette.background.paper,
-      width: 500,
+      
     },
   }));  
 
@@ -57,7 +57,7 @@ const theme = useTheme();
         return(
            
             <Grid container >
-            <Grid item >
+            <Grid item xs>
             <AppBar position="static" color="default">
     <Tabs
     value={value}
@@ -65,16 +65,17 @@ const theme = useTheme();
     variant="fullWidth"
     indicatorColor="secondary"
     >
-        <Tab label ="SIGN IN" index = {0}/>
-        <Tab label ="LOG IN" index = {1}/>
+        <Tab label ="LOG IN" index = {0}/>
+        <Tab label ="SIGN UP" index = {1}/>
         </Tabs>
         </AppBar>
         <Paper>
-        <TabPanel value={value} index={0} dir={theme.direction}>
-        <RegisterFields /> 
+        <TabPanel value={value} index={0} dir={theme.direction} >
+        <LoginFields />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-        <LoginFields />
+        
+        <RegisterFields /> 
         </TabPanel>
         
         </Paper>

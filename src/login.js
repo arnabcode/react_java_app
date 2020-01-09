@@ -10,34 +10,28 @@ import { fontSize } from '@material-ui/system';
 
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    '& > * + *': {
-      marginLeft: theme.spacing(2),
-    },
-    float:"left"
-  },
+  
     container: {
       display: 'flex',
-      flexWrap: 'wrap',
-      flexGrow: 1,
-      padding: theme.spacing(2),
-      marginTop: theme.spacing(5)
-  
+    flexWrap: 'wrap',
+    marginTop: theme.spacing(5),
+    paddingBottom: 20 + 'px',
+    alignContent:'center'
   
     },
     textField: {
-      marginLeft: theme.spacing(2),
-      marginRight: theme.spacing(2),
-      marginTop: theme.spacing(2),
-     marginBottom: theme.spacing(2),
-      width: 400 +'px',
+      display: 'flex',
+    flexWrap: 'wrap',
+    width: '100%',
+      
+      
       
     },
     
     button: {
       margin: theme.spacing(1),
-      marginLeft: theme.spacing(20),
-      marginRight: theme.spacing(2),
+     // marginLeft: theme.spacing(14),
+     // marginRight: theme.spacing(2),
     },
     divider:{
       height: 30 +"px",
@@ -99,17 +93,16 @@ const LoginFields = () => {
     return (
       <Grid
           container
-          direction="column"
-          justify="space-evenly"
-          alignItems="center"
+          direction='column'
+          justify='center'
+          alignItems='center'
           spacing ={2}
-
-          className={classes.container}
+          className = {classes.container}
         >
       <form  noValidate autoComplete="off">  
-          <Grid item xs>
+          <Grid item xs ={12}>
           <TextField
-            id="outlined-basic"
+            id="outlined"
             className={classes.textField}
             label="Username"
             margin="normal"
@@ -121,7 +114,7 @@ const LoginFields = () => {
 
         </Grid>
        
-        <Grid item xs>
+        <Grid item xs={12}>
          
           <TextField
             id="outlined"
@@ -138,27 +131,28 @@ const LoginFields = () => {
           </Grid>
           <br />
           
+          <Grid item  style= {{textAlign:'center'}}>
           <Button  variant="contained" color="primary" className={classes.button} onClick={ (event) => handleClick (event) }>
             Submit
           </Button>
-          <br />
+          </Grid>
           <br />
           <Grid container direction="row" justify="center"
           alignItems="center"
-          spacing ={3}>
+          spacing ={1}>
           
-          <Grid item>
+          <Grid item >
               <Link href="#"  underline="hover" color="secondary" variant="h6">
                              Forgot Password?
                          </Link>
           </Grid> 
 
-              <Grid item>
+              <Grid item >
                          <div className ={classes.divider}></div>
               </Grid>
 
-               <Grid item>
-              <Link href="#"  color="primary" underline="hover" variant="h4">
+               <Grid item >
+              <Link href="#"  color="primary" underline="hover" variant="h5">
                                 Signup
                 </Link>
                   </Grid>

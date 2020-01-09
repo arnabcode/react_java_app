@@ -9,10 +9,6 @@ const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-    border: 2 +'px',
-    borderStyle: 'solid',
-    
-    marginTop: theme.spacing(10),
     paddingBottom: 20 + 'px',
 
 
@@ -84,7 +80,7 @@ const RegisterFields = () => {
 
   return (
     <Grid container direction="column" justify="center"
-    alignItems="center" spacing={2}>
+    alignItems="center" spacing={2} className = {classes.container}>
     <form  noValidate autoComplete="off">
       <Grid item >
       <Grid container direction='row' spacing={1} justify = 'center'>
