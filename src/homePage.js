@@ -10,6 +10,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Link from '@material-ui/core/Link'
 import FirstPage from './firstPage'
 import AboutPage from './aboutPage'
+import Login from './login'
+import AuthenticatedRoute from './AuthenticatedRoute'
 
 var test = < br />;
 const useStyles = makeStyles(theme => ({
@@ -100,7 +102,8 @@ console.log(state);
       <Switch>
       
       <Route exact path='/' component={FirstPage} />
-      <Route exact path='/about' component={AboutPage} />
+      <Route exact path='/login' component={Login} />
+      <AuthenticatedRoute exact path='/about' component={AboutPage} />
       </Switch>
       
       </div>

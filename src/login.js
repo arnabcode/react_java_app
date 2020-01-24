@@ -2,11 +2,10 @@ import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Axios from 'axios';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
-import { fontSize } from '@material-ui/system';
+import AuthenticationService from './AuthenticationService';
+import axios from 'axios'
 
 
 const useStyles = makeStyles(theme => ({
@@ -45,6 +44,7 @@ const useStyles = makeStyles(theme => ({
   
 
   const sendRequest = async (payload) => {
+    /*
    // let basicAuth = 'Basic ' + btoa(payload.username + ':' + payload.password);
     let basicAuth = '247213da688a2558b805db784978ed6f' ;
     //console.log(basicAuth);
@@ -56,8 +56,10 @@ const useStyles = makeStyles(theme => ({
       }
     }
     );
-          
-    console.log(response)
+          */
+
+         
+    //console.log(response)
   } 
 
   
@@ -66,7 +68,9 @@ const LoginFields = () => {
 
   const [value, setValue] = useState({
     email: '',
-    password: ''
+    password: '',
+    hasLoginFailed: false,
+    showSuccessMessage: false
   })
   
   const { email, password } = value;
@@ -77,10 +81,19 @@ const LoginFields = () => {
         "username": email,
         "password": password   
           }
-      sendRequest(payload);
-      console.log(payload);
-  
-      //keep validation function
+
+          console.log(payload);
+
+          //let response = 
+          AuthenticationService.executeBasicAuthenticationService(payload.username, payload.password).then(() => {
+                console.log("Login Successful");
+                AuthenticationService.registerSuccessfulLogin(email,password);
+            }).catch((error) => {
+              console.log(error);
+            })
+              //AuthenticationService.registerSuccessfulLogin(this.state.email, this.state.password);
+              //this.props.history.push(`/about`)
+          //console.log(response);
     }
     
     function handleChange(e) {
